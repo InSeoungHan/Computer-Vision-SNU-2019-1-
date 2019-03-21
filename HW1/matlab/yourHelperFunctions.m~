@@ -1,0 +1,11 @@
+function myImageFilter_test(img, filter)
+    fprintf("this is myImageFilter test!\n");
+    [h, w] = size(img);  
+    fprintf("image size: %d x %d\n", w, h);
+    test = myImageFilter(img, S);
+    
+    [fs_r, fs_c] = size(filter);
+    answer = conv2(padarray(img, [floor(fs_r/2) floor(fs_c/2)], 'symmetric'), S, 'valid');
+        fprintf("summation : %d\n", sum(sum(round(test,4) == round(answer,4))));
+    end
+end

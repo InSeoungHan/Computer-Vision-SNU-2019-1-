@@ -24,9 +24,19 @@ for i = 1:numel(imglist)
     
     img = double(img) / 255;
     
+    %test
+    [x y] = size(img); 
+    S = [1 4 7 4 1; 4 16 26 16 4; 
+    if(i == 1)
+        fprintf("image size: %d x %d\n", x, y);
+        test_img = 
+    end
+    %{
+        
+    
     % Laplacian
     Il = myLaplacianFilter(img);
-    %{
+    
     % Differential of Gaussian
     Ig1 = myGaussianFilter(img, sigma1);
     Ig2 = myGaussianFilter(img, sigma2);
