@@ -29,6 +29,9 @@ for i = 1:numel(imglist)
    
     % Laplacian
     Il = myLaplacianFilter(img);
+    
+    % Laplacian denoise test
+    %{
     gaufilter = [1 4 7 4 1; 4 16 26 16 4; 7 26 41 26 7; 4 16 26 16 4; 1 4 7 4 1] / 273;
     Il_s = myImageFilter(Il, gaufilter);
     
@@ -38,13 +41,16 @@ for i = 1:numel(imglist)
     title('I1 : Convolute I0 by Laplacian filter(3x3)');
     subplot(1,3,3), imshow(Il_s);
     title('I2 : Convolute I1 by Gaussian filter(5x5)');
+
     pause;
-    %{
+    %}
+    
     % Differential of Gaussian
     Ig1 = myGaussianFilter(img, sigma1);
     Ig2 = myGaussianFilter(img, sigma2);
     Idg = Ig2 - Ig1;
     
+    %{
     % Canny Edge Detector
     % 1. Smoothing
     Ig = myGaussianFilter(img, sigma);
