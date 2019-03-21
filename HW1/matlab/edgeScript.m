@@ -12,7 +12,8 @@ lowThreshold = 0.3;
 
 imglist = dir(sprintf('%s/*.jpg', datadir));
 
-for i = 1:numel(imglist)
+%for i = 1:numel(imglist)
+for i = 1:1
     
     %read in images%
     [path imgname dummy] = fileparts(imglist(i).name);
@@ -23,9 +24,20 @@ for i = 1:numel(imglist)
     end
     
     img = double(img) / 255;
-    
+   
     % Laplacian
     Il = myLaplacianFilter(img);
+    gaufilter = [1 4 7 4 1; 4 16 26 16 4; 7 26 41 26 7; 4 16 26 16 4; 1 4 7 4 1] / 273;
+    Il_s = myImageFilter(Il, gaufilter);
+    
+    if(i == 1)
+    subplot(1,3,1) , imshow(img);
+    title('I0 : Original');
+    subplot(1,3,2), imshow(Il);
+    title('I1 : Convolute I0 by Laplacian filter(3x3)');
+    subplot(1,3,3), imshow(Il_s);
+    title('I2 : Convolute I1 by Gaussian filter(5x5)');
+    end
     %{
     % Differential of Gaussian
     Ig1 = myGaussianFilter(img, sigma1);
