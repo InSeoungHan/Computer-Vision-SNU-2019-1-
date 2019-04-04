@@ -1,5 +1,5 @@
 %init
-clear ; close all; clc
+clear ; close all; clc;
 
 datadir     = '../data';    %the directory containing the images
 resultsdir  = '../results'; %the directory for dumping results
