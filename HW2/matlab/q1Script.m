@@ -2,8 +2,8 @@
 
 %load bunny.mat file
 load("../data/bunny.mat");
-[x, y, z] = size(N);
 %generate grid for describing xy value of the normal N
+[x, y, z] = size(N);
 [Y, X] = meshgrid(1:y, x:-1:1);
 Nx = N(:,:,1); Ny = N(:,:,2); Nz = N(:,:,3);
 %draw xy value of the normal on each point.

@@ -46,5 +46,4 @@ img3 = double(imread(sprintf('%s/object3.pgm', datapath)))/255;
  
  figure(2);
  imagesc(albedo);
- imshow(albedo);
  title('Unnormalized Albedo');
