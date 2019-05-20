@@ -3,7 +3,7 @@ clear;
 
 % folder containing data (a sequence of jpg images)
 % pathname = '../data/car';
-pathname = '../data/landing';
+pathname = '../data/car';
 
 
 % find the images, initialize some variables
@@ -32,7 +32,8 @@ for i=startFrame:nFrames
         [pt1x, pt1y] = ginput(1);
         title('Click on the lower right corner of the template region to track');
         [pt2x, pt2y] = ginput(1);
-        template = img;
+        template = img; 
+        
     else
         % template box from the current template box
         pt1x = templateBox(1,1);
@@ -49,7 +50,7 @@ for i=startFrame:nFrames
     mask     = false(size(template));
     mask(pt1y:pt2y, pt1x:pt2x) = true;
     templateBox = [pt1x pt1x pt2x pt2x pt1x; pt1y pt2y pt2y pt1y pt1y];
-
+    
     tic;
     
     % initialize the LK tracker for this template

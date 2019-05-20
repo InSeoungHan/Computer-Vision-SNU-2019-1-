@@ -7,3 +7,4 @@ myContext = initAffineLKTracker(img, ones(80));
 a = myContext.HessianInv;
 b = myContext.Jacobian;
 fprintf("HessianInv accuracy : %d%%\n", sum(sum(a == A)) / (sum(sum(a ~= A)) + sum(sum(a == A))));
+disp(a);

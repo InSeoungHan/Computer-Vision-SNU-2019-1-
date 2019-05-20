@@ -11,16 +11,16 @@ function Wout = affineTrackerMasked(img, tmp, mask, W, context, Iter)
 % Iter - the maximum number of iteration to find best delta p
 % ============================ Outputs ============================
 % Wout - next Warping matrix
-J = context.Jacobian;
+J = context.Jacobian';
 H = context.HessianInv;
 tmp = tmp(mask > 0);
+for i=1:Iter
+    warpedImg = warpImageMasked(img, mask, W);
+    warpedImg = warpedImg(mask > 0);
+    error = warpedImg - tmp;
+    deltaP = H * (J * error);
+    Wp = [1+deltaP(1) deltaP(3) deltaP(5); deltaP(2) 1+deltaP(4) deltaP(6); 0 0 1]; %construct W(x; delta p)
+    W = W * Wp; %update Warp matrix
+end
 Wout = W;
-warpedImg = warpImageMasked(img, mask, Wout);
-warpedImg = warpedImg(mask > 0);
-    for i=1:Iter
-        error = warpedImg - tmp;
-        deltaP = H * (J' * error);
-        Wp = [1+deltaP(1) deltaP(2) deltaP(3); deltaP(4) 1+deltaP(5) deltaP(6); 0 0 1];
-        Wout = Wout / Wp;
-    end
 end
